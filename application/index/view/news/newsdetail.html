@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>新闻详情</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0,user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="__PUBLIC__/img/ashlogo.png" href="__PUBLIC__/img/ashlogo.png">
+  <link rel="stylesheet" href="__PUBLIC__/css/amazeui.css"/>
+  <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+</head>
+<body>
+<header class="am-topbar header">
+	<div class="am-container-1">
+	    <!-- 引入模板文件 -->
+    {include file="common/header" /}
+  </div>
+</header>
+<div class="toppic">
+	 <div class="am-container-1">
+	 <div class="toppic-title left">
+    <div style="margin-top:8px;margin-bottom: 5px;">
+        <!-- <i class="am-icon-paper-plane toppic-title-i"></i> -->
+        <img src="__PUBLIC__/img/newsinform.png" class="toppic-title-i" style="position: relative;top:5px;height: 37px;" />
+			<span class="toppic-title-span">新闻详情</span>
+      </div>
+			<p>News Information</p>
+		</div>
+		<div class="right toppic-progress">
+			<span><a href="{:url('index/news/index')}" class="w-white">新闻动态</a></span>
+			<i class=" am-icon-arrow-circle-right w-white"></i>
+			<span><a href="{:url('index/newsdetail/index')}" class="w-white">新闻详情</a></span>
+		</div>
+	</div>
+</div>
+
+<div class="am-container-1 margin-t30">
+	<div class="words-title ">
+		<span>{$newsdetail.newstitle}</span>
+		<div>{$newsdetail.newstime|substr=###,0,10}</div>
+	</div>
+</div>
+		
+<div class="solution-inform" style="background-color: #fff;">
+	<div class=" solution-inform-content-all">
+		<div class="solution-inform-content">
+		    <p class="inform-content-p">
+          {$newsdetail.newscontent}
+        </p>
+	      <div class="solution-inform-content-img">
+          {if condition="$newsdetail.newsimg neq ''"}
+              <img src="__IMG__/{$newsdetail.newsimg}">
+          {/if}
+	      	<div class="clear"></div>
+	      </div>
+	      <p class="solution-inform-content-words">
+          {$newsdetail.newsdetail}
+	      </p>
+	
+		</div>
+	</div>
+</div>
+
+<!-- 引入模板文件 -->
+  {include file="common/footer" /}
+
+
+</body>
+<script type="text/javascript">
+	//点击导航栏样式切换
+	var header=document.getElementById('shlist');
+	var aLi=header.getElementsByTagName('a');
+	var all=header.getElementsByTagName('li');
+
+	//循环div下面所有的链接，
+	for(var i=0;i<aLi.length;i++){
+	  //获取每一个a标签的herf属性
+	  var links = aLi[i].getAttribute("href");
+	  var myurl = document.location.href;
+	  //查看li下的链接是否包含当前窗口，如果存在，则给其添加样式
+	  if(myurl.indexOf(links) != -1){
+	  	for (var j = 0; j < all.length; j++) {
+			all[j].className="";
+		}
+	    all[i].className="hw-menu-active";
+	  }
+	}
+</script>
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+
+</html>

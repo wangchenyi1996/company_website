@@ -1,0 +1,96 @@
+<div class="layui-header header header-demo" style="height: 80px">
+    <div class="layui-main">
+        <a class="logo" href="{:url('admin/index/index')}" style="line-height: 75px">
+            三晖科技后台管理系统 
+         </a>
+        <ul class="layui-nav" lay-filter="" style="line-height: 75px">
+          <li class="layui-nav-item"><img src="__PUBLIC__/images/adminer.png" class="layui-circle" style="border: 2px solid #A9B7B7;" width="35px" alt=""></li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">{$Request.session.username}</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+               <dd><a href="{:url('index/index/index')}">前台首页</a></dd>
+              <dd><a href="{:url('admin/adminer/logout')}">退出</a></dd>
+            </dl>
+          </li>
+        
+        </ul>
+    </div>
+</div>
+
+ <div class="layui-side layui-bg-black x-side" style="top:85px">
+    <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="side">
+
+             <li class="layui-nav-item">
+                <a class="javascript:;" >
+                    <i class="layui-icon" style="top: 3px;">&#xe613;</i><cite>管理员管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd class="">
+                        <a href="{:url('admin/adminer/index')}" _href="{:url('admin/adminer/index')}">
+                            <cite>管理员列表</cite>
+                        </a>
+                    </dd>
+                  
+                </dl>
+            </li>
+           
+            <li class="layui-nav-item">
+                <a class="javascript:;" >
+                    <i class="layui-icon" style="top: 3px;">&#xe634;</i><cite>轮播管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd class="">
+                        <dd class="">
+                            <a href="{:url('admin/banner/index')}" _href="{:url('admin/banner/index')}">
+                                <cite>轮播列表</cite>
+                            </a>
+                        </dd>
+                    </dd>
+                </dl>
+            </li>
+            
+            <li class="layui-nav-item">
+                <a class="javascript:;" >
+                    <i class="layui-icon" style="top: 3px;">&#xe630;</i><cite>新闻管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd class="">
+                        <a href="{:url('admin/newsinfo/index')}" _href="{:url('admin/newsinfo/index')}">
+                            <cite>新闻列表</cite>
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item">
+                <a class="javascript:;" >
+                    <i class="layui-icon" style="top: 3px;">&#xe630;</i><cite>招聘管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd class="">
+                        <a href="{:url('admin/job/index')}" _href="{:url('admin/cases/index')}">
+                            <cite>招聘列表</cite>
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item">
+                <a class="javascript:;" >
+                    <i class="layui-icon" style="top: 3px;">&#xe630;</i><cite>产品案列管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd class="">
+                        <a href="{:url('admin/cases/index')}" _href="{:url('admin/cases/index')}">
+                            <cite>产品案列列表</cite>
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+            
+            <li class="layui-nav-item" style="height: 30px; text-align: center">
+            </li>
+        </ul>
+    </div>
+</div>
