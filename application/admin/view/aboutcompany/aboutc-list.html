@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+三晖科技后台管理系统        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+         <link rel="alternate icon" type="__PUBLICI__/img/ashlogo.png" href="__PUBLICI__/img/ashlogo.png">
+        <link rel="stylesheet" href="__PUBLIC__/css/x-admin.css" media="all">
+    </head>
+    <style type="text/css">
+        body{
+            overflow: hidden;
+        }
+       
+        ul.pagination li{
+            display: inline-block;
+            width: 40px;
+            background-color: #fff;
+            height: 30px;
+             line-height: 30px;
+             color: #fff;
+             font-size: 16px;
+             text-align: center;
+             border: 1px solid #f1f1f1;
+        }
+        ul.pagination li.active{
+             background-color: #199F93;
+         }
+        ul.pagination li.disabled{
+            display: none;
+        }
+        div.current{
+            display: block;
+        }
+        a{
+            cursor: pointer;
+        }
+        
+
+    </style>
+    <body>
+          <div class="layui-layout layui-layout-admin">
+            {include file="common/header" /}
+
+            <div style="margin-left:220px;">
+                <div class="x-nav">
+                    <span class="layui-breadcrumb">
+                      <a href="{:url('admin/index/add')}">首页</a>
+                      <a href="{:url('admin/aboutcompany/index')}">关于公司</a>
+                    </span>
+                    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+                </div>
+                <div class="x-body">
+                    <xblock><button class="layui-btn" onclick="window.location.href='{:url('admin/aboutcompany/add')}'"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：{$count} 条</span></xblock>
+                    <table class="layui-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                   公司名称
+                                </th>
+                                 <th>
+                                   创始成员
+                                </th>
+                                <th>
+                                   创建时间
+                                </th>
+                               
+                                <th>
+                                    座机号码
+                                </th>
+                                <th>
+                                   手机号码
+                                </th>
+                                <th>
+                                   地址
+                                </th>
+                                <th>
+                                   邮箱
+                                </th>
+                                <th>
+                                   公司环境
+                                </th>
+                                <th>
+                                   公司简介
+                                </th>
+                                <th>
+                                    操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="x-img">
+                              {volist name="aboutlist" id="vo"}
+                            <tr>
+                                <td width="20px;">
+                                    {$vo.id}
+                                </td>
+                                <td width="50px;">
+                                    {$vo.companyname}
+                                </td>
+                               
+                                <td width="50px;">
+                                    {$vo.persons}
+                                </td>
+                                <td width="80px;">
+                                    {$vo.ctime|substr=###,0,10}
+                                </td>
+                                <td width="30px;">
+                                    {$vo.telphone}
+                                </td>
+                                 <td width="30px;">
+                                    {$vo.phone}
+                                </td>
+                                 <td width="70px;">
+                                    {$vo.address}
+                                </td>
+                                 <td width="20px;">
+                                    {$vo.email}
+                                </td>
+                                
+                                <td width="150px;">
+                                        {if condition="$vo.officeimg neq ''"}
+                                            <img src="__IMG__/{$vo.officeimg}" width="70" height="30" style="margin-bottom: 5px;">
+                                        {else /}
+                                            <span>暂无新闻图片</span>
+                                        {/if}
+
+                                          {if condition="$vo.officeimg2 neq ''"}
+                                            <img src="__IMG__/{$vo.officeimg2}" width="70" height="30" style="margin-bottom: 5px;">
+                                        {else /}
+                                            <span>暂无新闻图片</span>
+                                        {/if}
+
+                                          {if condition="$vo.officeimg3 neq ''"}
+                                            <img src="__IMG__/{$vo.officeimg3}"  width="70" height="30" style="margin-bottom: 5px;">
+                                        {else /}
+                                            <span>暂无新闻图片</span>
+                                        {/if}
+
+                                          {if condition="$vo.officeimg4 neq ''"}
+                                            <img src="__IMG__/{$vo.officeimg4}"  width="70" height="30" style="margin-bottom: 5px;">
+                                        {else /}
+                                            <span>暂无新闻图片</span>
+                                        {/if}
+
+                                          {if condition="$vo.officeimg5 neq ''"}
+                                            <img src="__IMG__/{$vo.officeimg5}"  width="70" height="30" style="margin-bottom: 5px;">
+                                        {else /}
+                                            <span>暂无新闻图片</span>
+                                        {/if}
+                                </td>
+                               
+                              
+                               <td>
+                                  <!-- {$vo.jianjie} -->
+                                    <?php 
+                                        $datas=explode('。',$vo['jianjie']);
+                                        foreach ($datas as  $val){ ?>
+                                        <p style="text-indent:2em;margin-bottom: 10px;">
+                                          <?php echo $val; ?>
+                                        </p>
+                                    <?php } ?>
+                                </td>
+                                <td class="td-manage" width="110px">
+                                  
+                                    <a title="编辑" href="{:url('admin/aboutcompany/edit',array('id'=>$vo['id']))}" class="ml-5" style="text-decoration:none;margin-right: 10px;">
+                                        <i class="layui-icon">&#xe642;</i>编辑
+                                    </a>
+                                    <a title="删除" onclick="admin_del('{:url('admin/aboutcompany/del',array('id'=>$vo['id']))}')" style="text-decoration:none">
+                                        <i class="layui-icon">&#xe640;</i>删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                        
+                     <!-- 分页 -->
+                     {$page}
+                </div>
+            </div>
+           
+            
+            <div class="site-mobile-shade">
+            </div>
+        </div>
+        
+        <script src="__PUBLIC__/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="__PUBLIC__/js/x-layui.js" charset="utf-8"></script>
+        <script>
+            layui.use(['laydate','element','laypage','layer'], function(){
+              $ = layui.jquery;//jquery
+              laydate = layui.laydate;//日期插件
+              lement = layui.element();//面包导航
+              laypage = layui.laypage;//分页
+              layer = layui.layer;//弹出层
+
+              //以上模块根据需要引入
+
+                layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+                  layer.photos({
+                    photos: '#x-img'
+                    ,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+                  });
+                }); 
+              
+            });
+
+             function admin_del(url){
+                layer.confirm('确认要删除吗？',function(index){
+                    window.location.href=url;
+                    layer.close(index);
+                    // return true;
+                });
+            }
+
+           
+           
+        </script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>
+三晖科技后台管理系统        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+         <link rel="alternate icon" type="__PUBLICI__/img/ashlogo.png" href="__PUBLICI__/img/ashlogo.png">
+        <link rel="stylesheet" href="__PUBLIC__/css/x-admin.css" media="all">
+    </head>
+    <style type="text/css">
+        body{
+            overflow: hidden;
+        }
+    </style>
+    
+    <body>
+        <div class="layui-layout layui-layout-admin">
+             {include file="common/header"/}
+
+             <div class="x-nav" style="margin-left: 220px;">
+                <span class="layui-breadcrumb">
+                  <a href="{:url('admin/index/index')}">首页</a>
+                  <a href="{:url('admin/aboutcompany/index')}">关于公司</a>
+                  <a href="{:url('admin/aboutcompany/edit')}">编辑公司信息</a>
+                </span>
+                <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i>
+                </a>
+            </div>
+
+           <div class="x-body" style="margin-left: 220px;padding:0;" id="x-img">
+           <form class="layui-form" style="margin-top: 20px;" action="" enctype="multipart/form-data" method="post">
+                    <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>公司名称
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" id="companyname" name="companyname" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入公司名称" oninput="companyname1()" value="{$aboutitem.companyname}">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>创始成员
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" name="persons" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入创始成员" value="{$aboutitem.persons}">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>创建时间
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                          <input class="layui-input" placeholder="请选择创建时间" id="LAY_demorange_s" name="ctime" required="" lay-verify="required" autocomplete="off" value=" {$aboutitem.ctime|substr=###,0,10}">
+                        </div>
+                      </div>
+
+                     <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>座机号码
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" name="phone" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入座机号码" value="{$aboutitem.phone}">
+                        </div>
+                    </div>
+                     <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>手机号码
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" name="telphone" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入手机号码" value="{$aboutitem.telphone}">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>公司地址
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" name="address" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入地址" value="{$aboutitem.address}">
+                        </div>
+                       </div>
+
+                       <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>公司邮箱
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <input type="text" name="email" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" placeholder="请输入邮箱" value="{$aboutitem.email}">
+                        </div>
+                       </div>
+                        
+
+                        <div class="layui-form-item">
+                          <div class="layui-input-inline" style='width:500px;margin-left: 107px;'>
+                              <span class="x-red">*</span>
+                              <span><b>不选择都使用原来上传的图片</b></span>
+                           </div>
+                      </div>
+                        <div class="layui-form-item">
+                        <label for="link" class="layui-form-label">
+                            <span class="x-red">*</span>办公环境
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                          <input type="file" name="img[]" style="position: relative;top:10px;margin-bottom: 10px;"><img src="__IMG__{$aboutitem.officeimg}" height="20">
+                          <input type="file" name="img[]" style="position: relative;top:10px;margin-bottom: 10px;"><img src="__IMG__{$aboutitem.officeimg2}" height="20">
+                          <input type="file" name="img[]" style="position: relative;top:10px;margin-bottom: 10px;" ><img src="__IMG__{$aboutitem.officeimg3}" height="20">
+                          <input type="file" name="img[]" style="position: relative;top:10px;margin-bottom: 10px;"><img src="__IMG__{$aboutitem.officeimg4}" height="20">
+                          <input type="file" name="img[]" style="position: relative;top:10px;margin-bottom: 10px;"><img src="__IMG__{$aboutitem.officeimg5}" height="20">
+                        </div>
+                    </div>
+                    
+                      <div class="layui-form-item">
+                        <label for="desc" class="layui-form-label">
+                            <span class="x-red">*</span>公司简介
+                        </label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <textarea name="jianjie" required="" lay-verify="required"
+                            autocomplete="off" class="layui-input" style="height: 100px;line-height: 20px;" placeholder="请输入公司简介">{$aboutitem.jianjie}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label">
+                        </label>
+                        <button type="submit" class="layui-btn" lay-submit="">
+                            保存
+                        </button>
+                    </div>
+                </form>
+          </div>
+            
+            <div class="site-mobile-shade">
+            </div>
+        </div>
+        
+        <script src="__PUBLIC__/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="__PUBLIC__/js/x-layui.js" charset="utf-8"></script>
+         <script src="__PUBLIC__/js/x-admin.js"></script>
+        <script>
+            layui.use(['form','layer','upload','laydate'], function(){
+                $ = layui.jquery;
+              var form = layui.form()
+              ,layer = layui.layer,
+               laydate = layui.laydate;//日期插件
+
+             layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+                  layer.photos({
+                    photos: '#x-img'
+                    ,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+                  });
+                }); 
+
+               var start = {
+                max: '2099-06-16 23:59:59'
+                ,istoday: false
+                ,choose: function(datas){
+                  end.min = datas; //开始日选好后，重置结束日的最小日期
+                  end.start = datas //将结束日的初始值设定为开始日
+                }
+              };
+              
+              document.getElementById('LAY_demorange_s').onclick = function(){
+                start.elem = this;
+                laydate(start);
+              }
+              
+            });
+
+
+             function companyname1(){
+                var title=document.getElementById('companyname').value;
+                if(title.length>30){
+                    alert('公司名称长度不可以大于30位')
+                }
+            }
+        </script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    </body>
+
+</html>

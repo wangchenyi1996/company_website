@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>
+三晖科技后台管理系统        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+          <link rel="alternate icon" type="__PUBLICI__/img/ashlogo.png" href="__PUBLICI__/img/ashlogo.png">
+        <link rel="stylesheet" href="__PUBLIC__/css/x-admin.css" media="all">
+    </head>
+    <style type="text/css">
+        body{
+            overflow: hidden;
+        }
+    </style>
+    <body>
+         <div class="layui-layout layui-layout-admin">
+            {include file="common/header" /}
+
+            <div class="x-nav" style="margin-left: 220px;">
+                    <span class="layui-breadcrumb">
+                      <a href="{:url('admin/index/index')}">首页</a>
+                      <a href="{:url('admin/cases/index')}">案列列表</a>
+                      <a href="{:url('admin/cases/edit')}">编辑案列</a>
+                    </span>
+                    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+            </div>
+
+
+          <div class="x-body"  style="margin-left: 220px;" id="x-img">
+            <form class="layui-form" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="{$caseitem.id}">
+                <div class="layui-form-item">
+                    <label for="link" class="layui-form-label">
+                        <span class="x-red">*</span>案列名称
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <input type="text" id="casename" name="casename" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input"  placeholder="请输入案例名称" oninput="casename1()" value="{$caseitem.casename}"></input>
+                    </div>
+                </div>
+
+                 <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>客户姓名
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <input name="custormname" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input"  placeholder="请输入客户姓名" id="custormname" oninput="custormname1()" value="{$caseitem.custormname}"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>客户号码
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <input name="telphone" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input" placeholder="请输入客户号码" id="tel" oninput="telphone1()" value="{$caseitem.telphone}"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>案列类型
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                       <input  name="casetype" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input"  placeholder="请输入案列类型" id="casetype" oninput="casetype1()" value="{$caseitem.casetype}"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>案列地址
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <input name="caseurl" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input"  placeholder="请输入案列地址" value="{$caseitem.caseurl}"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style='width:500px;margin-left: 107px;'>
+                        <span class="x-red">*</span>
+                        <span><b>不选择都使用原来上传的图片</b></span>
+                     </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="link" class="layui-form-label">
+                        <span class="x-red">*</span>案列LOGO
+                    </label>
+                  <div class="layui-input-inline" style='width:500px;'>
+                    <input type="file" name="photo[]" style="position: relative;top:10px;">
+                  </div>
+                   <div >
+                             {if condition="$caseitem.caselogo neq ''"}
+                                <img src="__IMG__{$caseitem.caselogo}" height="50">
+                            {else /}
+                                <span>暂无缩略图</span>
+                            {/if}
+                     </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="link" class="layui-form-label">
+                        <span class="x-red">*</span>案列图片
+                    </label>
+                  <div class="layui-input-inline" style='width:500px;'>
+                    <input type="file" name="photo[]" style="position: relative;top:10px;">
+                  </div>
+                  <div>
+                             {if condition="$caseitem.caseimg neq ''"}
+                                <img src="__IMG__{$caseitem.caseimg}" height="50">
+                            {else /}
+                                <span>暂无缩略图</span>
+                            {/if}
+                     </div>
+                </div>
+
+                 <div class="layui-form-item">
+                    <label for="link" class="layui-form-label">
+                        <span class="x-red">*</span>案列时间
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                      <input class="layui-input" placeholder="请选择时间" id="LAY_demorange_s" name="createtime"  required="" lay-verify="required" autocomplete="off" value="{$caseitem.createtime|substr=###,0,10}">
+                    </div>
+                  </div>
+
+                <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>案列公司
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <input name="companyname" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input"  placeholder="请输入案列公司名称" id="comname" oninput="comname1()" value="{$caseitem.companyname}"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="desc" class="layui-form-label">
+                        <span class="x-red">*</span>案列内容
+                    </label>
+                    <div class="layui-input-inline" style='width:500px;'>
+                        <textarea name="casecontent" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input" style="height: 100px;line-height: 20px;" placeholder="请输入案列内容">{$caseitem.casecontent}</textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">
+                    </label>
+                    <button type="submit" class="layui-btn" lay-filter="add" lay-submit="">
+                       保存
+                    </button>
+                </div>
+            </form>
+          </div>
+            
+            <div class="site-mobile-shade">
+            </div>
+        </div>
+        
+        <script src="__PUBLIC__/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="__PUBLIC__/js/x-layui.js" charset="utf-8"></script>
+        <script src="__PUBLIC__/js/x-admin.js"></script>
+        <script>
+             layui.use(['form','layer','laydate'], function(){
+                $ = layui.jquery;
+              var form = layui.form()
+              ,layer = layui.layer,
+               laydate = layui.laydate;//日期插件
+
+
+                layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+                  layer.photos({
+                    photos: '#x-img'
+                    ,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+                  });
+                }); 
+
+               var start = {
+                max: '2099-06-16 23:59:59'
+                ,istoday: false
+                ,choose: function(datas){
+                  end.min = datas; //开始日选好后，重置结束日的最小日期
+                  end.start = datas //将结束日的初始值设定为开始日
+                }
+              };
+              
+              document.getElementById('LAY_demorange_s').onclick = function(){
+                start.elem = this;
+                laydate(start);
+              }
+              
+            });
+
+            function casename1(){
+                var title=document.getElementById('casename').value;
+                if(title.length>30){
+                    alert('案列名称不可以大于30位')
+                }
+            }
+            function custormname1(){
+                var title=document.getElementById('custormname').value;
+                if(title.length>30){
+                    alert('客户姓名不可以大于30位')
+                }
+            }
+            function telphone1(){
+                var title=document.getElementById('tel').value;
+                if(title.length>11){
+                    alert('手机号码不可以大于11位')
+                }
+            }
+             function casetype1(){
+                var title=document.getElementById('casetype').value;
+                if(title.length>30){
+                    alert('案列类型不可以大于30位')
+                }
+            }
+             function comname1(){
+                var title=document.getElementById('comname').value;
+                if(title.length>30){
+                    alert('公司名称不可以大于30位')
+                }
+            }
+           
+        </script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    </body>
+
+</html>
